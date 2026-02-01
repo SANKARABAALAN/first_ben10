@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omnitrix Database</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="omnitrix-header-logo">
+                <div class="omnitrix-icon"></div>
+                <h1>OMNITRIX DATABASE <span class="version">v10.0</span></h1>
+            </div>
+            <div class="status-indicator">STATUS: ARMED</div>
+        </header>
+
+        <main class="main-interface">
+            <aside class="alien-list-container">
+                <h2>AVAILABLE DNA</h2>
+                <div class="alien-list" id="alienList">
+                    <!-- Javascript will populate this -->
+                </div>
+            </aside>
+
+            <section class="alien-details-panel" id="detailPanel">
+                <div class="scanner-line"></div>
+
+                <div class="detail-header">
+                    <h2 id="alienName" class="glitch-text">SELECT ALIEN</h2>
+                    <span id="alienSpecies" class="species-tag">UNKNOWN SPECIES</span>
+                </div>
+
+                <div class="visual-data-grid">
+                    <div class="alien-visual-display">
+                        <div class="hologram-effect">
+                            <!-- We will use a colorful gradient or the generated image here -->
+                            <div id="alienImage" class="alien-avatar placeholder"></div>
+                        </div>
+                    </div>
+
+                    <div class="stats-box">
+                        <h3>COMBAT STATS</h3>
+                        <div class="stat-row">
+                            <span>POWER</span>
+                            <div class="stat-bar">
+                                <div id="statPower" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-row">
+                            <span>SPEED</span>
+                            <div class="stat-bar">
+                                <div id="statSpeed" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-row">
+                            <span>UTILITY</span>
+                            <div class="stat-bar">
+                                <div id="statUtility" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-terminal">
+                    <h3>> ABILITIES_LOG</h3>
+                    <p id="alienPowers">Waiting for selection...</p>
+
+                    <br>
+                    <h3>> BIO_DATA</h3>
+                    <p id="alienBio">Select an alien from the list to view its file.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Ben 10 Database | &copy; SANKARABAALAN</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

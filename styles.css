@@ -1,0 +1,402 @@
+:root {
+    --primary: #51ff00;
+    /* Omnitrix Green */
+    --primary-dim: #2e8b00;
+    --bg-color: #050505;
+    --panel-bg: #0f120f;
+    --text-color: #ccffcc;
+    --accent-color: #ffffff;
+
+    --font-heading: 'Orbitron', sans-serif;
+    --font-mono: 'Roboto Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-mono);
+    height: 100vh;
+    /* Full viewport app */
+    overflow: hidden;
+    /* Prevent body scroll, handle inside app-container */
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-dim);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-left: 1px solid #111;
+    border-right: 1px solid #111;
+}
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(0, 20, 0, 0.8);
+    border-bottom: 2px solid var(--primary);
+    box-shadow: 0 0 15px rgba(81, 255, 0, 0.2);
+}
+
+.omnitrix-header-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.omnitrix-icon {
+    width: 40px;
+    height: 40px;
+    background: #000;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.omnitrix-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    background: var(--primary);
+    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+
+h1 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin: 0;
+    letter-spacing: 2px;
+    color: var(--primary);
+}
+
+.version {
+    font-size: 0.8rem;
+    color: #666;
+    margin-left: 10px;
+}
+
+.status-indicator {
+    padding: 5px 15px;
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    background: rgba(81, 255, 0, 0.1);
+    animation: pulse 2s infinite;
+}
+
+/* Main Layout */
+.main-interface {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.alien-list-container {
+    width: 300px;
+    background: #0a0a0a;
+    border-right: 1px solid var(--primary-dim);
+    display: flex;
+    flex-direction: column;
+}
+
+.alien-list-container h2 {
+    padding: 1.5rem;
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    border-bottom: 1px solid #222;
+    color: #fff;
+    background: #0f160f;
+}
+
+.alien-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.alien-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 5px;
+    background: #111;
+    border: 1px solid #333;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-heading);
+}
+
+.alien-item:hover {
+    background: #002200;
+    border-color: var(--primary);
+    padding-left: 20px;
+}
+
+.alien-item.active {
+    background: var(--primary);
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 0 15px var(--primary);
+}
+
+/* Detail Panel */
+.alien-details-panel {
+    flex: 1;
+    padding: 2rem;
+    position: relative;
+    overflow-y: auto;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(0, 20, 0, 0.5) 0%, transparent 70%),
+        linear-gradient(0deg, transparent 24%, rgba(81, 255, 0, .03) 25%, rgba(81, 255, 0, .03) 26%, transparent 27%, transparent 74%, rgba(81, 255, 0, .03) 75%, rgba(81, 255, 0, .03) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(81, 255, 0, .03) 25%, rgba(81, 255, 0, .03) 26%, transparent 27%, transparent 74%, rgba(81, 255, 0, .03) 75%, rgba(81, 255, 0, .03) 76%, transparent 77%, transparent);
+    background-size: 100% 100%, 50px 50px, 50px 50px;
+}
+
+.detail-header {
+    border-bottom: 2px solid var(--primary);
+    margin-bottom: 2rem;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.detail-header h2 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+.species-tag {
+    font-family: var(--font-mono);
+    color: var(--primary);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.visual-data-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.alien-visual-display {
+    height: 350px;
+    border: 2px solid var(--primary);
+    position: relative;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Corner Accents */
+.alien-visual-display::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 20px;
+    height: 20px;
+    border-top: 4px solid #fff;
+    border-left: 4px solid #fff;
+    z-index: 2;
+}
+
+.alien-visual-display::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 20px;
+    height: 20px;
+    border-bottom: 4px solid #fff;
+    border-right: 4px solid #fff;
+    z-index: 2;
+}
+
+.alien-avatar {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Default placeholder if no image */
+    background: repeating-linear-gradient(45deg,
+            #001100,
+            #001100 10px,
+            #002200 10px,
+            #002200 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.alien-avatar.placeholder::after {
+    content: 'NO_SIGNAL';
+    color: var(--primary-dim);
+}
+
+.stats-box h3,
+.info-terminal h3 {
+    font-family: var(--font-heading);
+    color: var(--primary);
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--primary);
+    padding-left: 10px;
+}
+
+.stat-row {
+    margin-bottom: 1.5rem;
+}
+
+.stat-row span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.stat-bar {
+    height: 20px;
+    background: #111;
+    border: 1px solid #333;
+    width: 100%;
+}
+
+.stat-bar div {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-dim), var(--primary));
+    width: 0%;
+    /* JS will animate this */
+    transition: width 1s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    box-shadow: 0 0 10px var(--primary-dim);
+}
+
+.info-terminal {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #333;
+    padding: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+footer {
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid #222;
+    background: #050505;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+/* Scanner Line Animation */
+.scanner-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(81, 255, 0, 0.5);
+    box-shadow: 0 0 10px var(--primary);
+    animation: scan 4s linear infinite;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes scan {
+    0% {
+        top: 0%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .visual-data-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-interface {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .alien-list-container {
+        width: 100%;
+        max-height: 200px;
+        /* Scrollable list on top */
+    }
+
+    .alien-details-panel {
+        overflow: visible;
+    }
+}
